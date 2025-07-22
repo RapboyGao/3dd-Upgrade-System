@@ -1,0 +1,17 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./vue/.nuxt/tsconfig.app.json"
+    },
+    {
+      "path": "./vue/.nuxt/tsconfig.server.json"
+    },
+    {
+      "path": "./vue/.nuxt/tsconfig.shared.json"
+    },
+    {
+      "path": "./vue/.nuxt/tsconfig.node.json"
+    }
+  ]
+}

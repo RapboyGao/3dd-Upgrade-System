@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-gin dev",
+    "build": "nuxt-gin build",
+    "api:generate": "nuxt-gin gen",
+    "cleanup": "nuxt-gin cleanup",
+    "postinstall": "nuxt-gin install",
+    "update:dep": "nuxt-gin update"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.21.3",
+    "@types/node": "^24.0.15",
+    "@vitejs/plugin-legacy": "^7.1.0",
+    "axios": "^1.10.0",
+    "nuxt": "^4.0.1",
+    "nuxt-gin-tools": "0.1.7",
+    "prettier": "^3.6.2",
+    "sass": "^1.89.2"
+  }
+}
