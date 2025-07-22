@@ -15,14 +15,132 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TestResponse"
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Hello, World!"
 components:
   schemas:
-    TestResponse:
-      title: Test of response
-      description: An example of test on server response.
+    SpecificLevel:
+      type: string
+      enum:
+        - F1
+        - F2
+        - F2b
+        - F3
+        - F3b
+        - F4
+        - F5
+        - M
+        - J
+        - A1
+        - A2
+        - A2b
+        - Ta
+        - Tb
+        - C
+        - Tc
+      description: 所有的飞行员等级
+
+    DatabaseRow:
       type: object
       properties:
-        time:
-          type: integer
-          format: int64
+        id:
+          type: string
+          description: 员工号
+        name:
+          type: string
+          description: 员工姓名
+        currentDepartment:
+          type: string
+          description: 当前行政部门
+        lastDepartment3dd:
+          type: string
+          description: 在三大队时的最后一个行政部门
+        highestLevel:
+          $ref: "#/components/schemas/SpecificLevel"
+          description: 最高飞行员等级
+        F1:
+          type: number
+          format: datetime
+          description: F1升级日期时间戳
+        F2:
+          type: number
+          format: datetime
+          description: F2升级日期时间戳
+        F2b:
+          type: number
+          format: datetime
+          description: F2b升级日期时间戳
+        F3:
+          type: number
+          format: datetime
+          description: F3升级日期时间戳
+        F3b:
+          type: number
+          format: datetime
+          description: F3b升级日期时间戳
+        F4:
+          type: number
+          format: datetime
+          description: F4升级日期时间戳
+        F5:
+          type: number
+          format: datetime
+          description: F5升级日期时间戳
+        M:
+          type: number
+          format: datetime
+          description: M升级日期时间戳
+        J:
+          type: number
+          format: datetime
+          description: J升级日期时间戳
+        A1:
+          type: number
+          format: datetime
+          description: A1升级日期时间戳
+        A2:
+          type: number
+          format: datetime
+          description: A2升级日期时间戳
+        A2b:
+          type: number
+          format: datetime
+          description: A2b升级日期时间戳
+        Ta:
+          type: number
+          format: datetime
+          description: Ta升级日期时间戳
+        Tb:
+          type: number
+          format: datetime
+          description: Tb升级日期时间戳
+        C:
+          type: number
+          format: datetime
+          description: C升级日期时间戳
+        Tc:
+          type: number
+          format: datetime
+          description: Tc升级日期时间戳
+        OverrideDict:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/SpecificLevel"
+          description: 覆盖的飞行员等级字典，key为员工号，value为覆盖的等级
+
+    LevelOverrideRow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 员工号-SpecificLevel
+        level:
+          $ref: "#/components/schemas/SpecificLevel"
+          description: 要覆盖的飞行员升级日期
+        levelDate:
+          type: number
+          format: datetime
+          description: 要覆盖的飞行员升级日期时间戳
