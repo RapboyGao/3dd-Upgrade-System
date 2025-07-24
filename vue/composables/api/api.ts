@@ -24,13 +24,354 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
- * 用于覆盖飞行员升级日期的行
+ * 
+ * @export
+ * @interface AircraftExperiencesOverrideRow
+ */
+export interface AircraftExperiencesOverrideRow {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'staffID'?: string;
+    /**
+     * 员工姓名
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'name'?: string;
+    /**
+     * 员工姓名简拼
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'nameShortcut'?: string;
+    /**
+     * 员工姓名拼音
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'namePinYin'?: string;
+    /**
+     * 当前行政部门
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'currentDepartment'?: string;
+    /**
+     * 在三大队时的最后一个行政部门
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {Array<DepartmentHistoryRow>}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'departmentHistory'?: Array<DepartmentHistoryRow>;
+    /**
+     * 
+     * @type {Array<AircraftType>}
+     * @memberof AircraftExperiencesOverrideRow
+     */
+    'AircraftExperiences'?: Array<AircraftType>;
+}
+/**
+ * 
+ * @export
+ * @interface AircraftExperiencesOverrideRowUpsert
+ */
+export interface AircraftExperiencesOverrideRowUpsert {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof AircraftExperiencesOverrideRowUpsert
+     */
+    'staffID'?: string;
+    /**
+     * 
+     * @type {Array<AircraftType>}
+     * @memberof AircraftExperiencesOverrideRowUpsert
+     */
+    'AircraftExperiences'?: Array<AircraftType>;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const AircraftType = {
+    B737: 'B737',
+    B777: 'B777',
+    B787: 'B787',
+    B747: 'B747',
+    _728: '728',
+    _772: '772',
+    _77L: '77L',
+    _77S: '77S',
+    _73Q: '73Q',
+    _747: '747',
+    _777: '777',
+    _744: '744'
+} as const;
+
+export type AircraftType = typeof AircraftType[keyof typeof AircraftType];
+
+
+/**
+ * 
+ * @export
+ * @interface CheckRideDetailRow
+ */
+export interface CheckRideDetailRow {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'staffID'?: string;
+    /**
+     * 员工姓名
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'name'?: string;
+    /**
+     * 员工姓名简拼
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'nameShortcut'?: string;
+    /**
+     * 员工姓名拼音
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'namePinYin'?: string;
+    /**
+     * 当前行政部门
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'currentDepartment'?: string;
+    /**
+     * 在三大队时的最后一个行政部门
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {Array<DepartmentHistoryRow>}
+     * @memberof CheckRideDetailRow
+     */
+    'departmentHistory'?: Array<DepartmentHistoryRow>;
+    /**
+     * 
+     * @type {CheckRideType}
+     * @memberof CheckRideDetailRow
+     */
+    'checkRide'?: CheckRideType;
+    /**
+     * 检查日期时间戳
+     * @type {number}
+     * @memberof CheckRideDetailRow
+     */
+    'checkRideDate'?: number;
+    /**
+     * 
+     * @type {CheckRideResult}
+     * @memberof CheckRideDetailRow
+     */
+    'checkRideResult'?: CheckRideResult;
+    /**
+     * 检查备注
+     * @type {string}
+     * @memberof CheckRideDetailRow
+     */
+    'note'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @interface CheckRideDetailRowUpsert
+ */
+export interface CheckRideDetailRowUpsert {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof CheckRideDetailRowUpsert
+     */
+    'staffID'?: string;
+    /**
+     * 
+     * @type {CheckRideType}
+     * @memberof CheckRideDetailRowUpsert
+     */
+    'checkRide'?: CheckRideType;
+    /**
+     * 检查日期时间戳
+     * @type {number}
+     * @memberof CheckRideDetailRowUpsert
+     */
+    'checkRideDate'?: number;
+    /**
+     * 
+     * @type {CheckRideResult}
+     * @memberof CheckRideDetailRowUpsert
+     */
+    'checkRideResult'?: CheckRideResult;
+    /**
+     * 检查备注
+     * @type {string}
+     * @memberof CheckRideDetailRowUpsert
+     */
+    'note'?: string;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CheckRideResult = {
+    Satisfactory: 'Satisfactory',
+    Unsatisfactory: 'Unsatisfactory',
+    Incomplete: 'Incomplete'
+} as const;
+
+export type CheckRideResult = typeof CheckRideResult[keyof typeof CheckRideResult];
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const CheckRideType = {
+    F1: 'F1 初始改装/转机型',
+    F2: 'F2 航线检查',
+    F22: 'F2 模拟机检查',
+    F2b: 'F2b 航线检查',
+    F3: 'F3 模拟机检查',
+    F3b: 'F3b 航线检查',
+    F3b2: 'F3b 模拟机检查',
+    F3b3: 'F3b 航线检查',
+    F4: 'F4 模拟机检查',
+    F42: 'F4 航线检查',
+    F5: 'F5 口试',
+    F52: 'F5 模拟机评估',
+    F51: 'F5 航线检查1',
+    F52: 'F5 航线检查2',
+    F532: 'F5 航线检查3',
+    F54: 'F5 航线检查4',
+    F53: 'F5 局方检查',
+    M: 'M 本场',
+    J: 'J 模拟机',
+    J2: 'J 航线检查',
+    A1: 'A1 航线检查',
+    A2: 'A2 航线检查',
+    A2b: 'A2b 航线检查',
+    Ta: 'Ta 本场',
+    Ta2: 'Ta 模拟机评估',
+    Ta3: 'Ta 模拟机检查',
+    Tb: 'Tb 模拟机评估',
+    Tb2: 'Tb 模拟机检查'
+} as const;
+
+export type CheckRideType = typeof CheckRideType[keyof typeof CheckRideType];
+
+
+/**
+ * 
+ * @export
+ * @interface DeleteWithID
+ */
+export interface DeleteWithID {
+    /**
+     * 要删除的行的唯一id
+     * @type {string}
+     * @memberof DeleteWithID
+     */
+    'id'?: string;
+}
+/**
+ * 飞行员在不同行政部门的历史记录，不单独使用
+ * @export
+ * @interface DepartmentHistoryRow
+ */
+export interface DepartmentHistoryRow {
+    /**
+     * 行政部门
+     * @type {string}
+     * @memberof DepartmentHistoryRow
+     */
+    'department'?: string;
+    /**
+     * 开始日期时间戳
+     * @type {number}
+     * @memberof DepartmentHistoryRow
+     */
+    'startDate'?: number;
+}
+/**
+ * 
  * @export
  * @interface LevelOverrideRow
  */
 export interface LevelOverrideRow {
     /**
-     * 员工号-SpecificLevel
+     * 员工号
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'staffID'?: string;
+    /**
+     * 员工姓名
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'name'?: string;
+    /**
+     * 员工姓名简拼
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'nameShortcut'?: string;
+    /**
+     * 员工姓名拼音
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'namePinYin'?: string;
+    /**
+     * 当前行政部门
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'currentDepartment'?: string;
+    /**
+     * 在三大队时的最后一个行政部门
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {Array<DepartmentHistoryRow>}
+     * @memberof LevelOverrideRow
+     */
+    'departmentHistory'?: Array<DepartmentHistoryRow>;
+    /**
+     * 员工号-SpecificLevel，作为唯一ID
      * @type {string}
      * @memberof LevelOverrideRow
      */
@@ -51,6 +392,46 @@ export interface LevelOverrideRow {
 
 
 /**
+ * 
+ * @export
+ * @interface LevelOverrideRowUpsert
+ */
+export interface LevelOverrideRowUpsert {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof LevelOverrideRowUpsert
+     */
+    'staffID'?: string;
+    /**
+     * 
+     * @type {SpecificLevel}
+     * @memberof LevelOverrideRowUpsert
+     */
+    'level'?: SpecificLevel;
+    /**
+     * 要覆盖的飞行员升级日期时间戳
+     * @type {number}
+     * @memberof LevelOverrideRowUpsert
+     */
+    'levelDate'?: number;
+}
+
+
+/**
+ * 在 MainSheetRow 中代表某个标准是否有Override，不单独使用
+ * @export
+ * @interface LevelOverrideStatus
+ */
+export interface LevelOverrideStatus {
+    /**
+     * 在 MainSheetRow 中代表某个标准是否有Override
+     * @type {boolean}
+     * @memberof LevelOverrideStatus
+     */
+    '#/components/schemas/SpecificLevel'?: boolean;
+}
+/**
  * 总表数据中的行信息，由服务器发送给前端，包含飞行员的基本信息和所有Level获得时间
  * @export
  * @interface MainSheetRow
@@ -69,6 +450,18 @@ export interface MainSheetRow {
      */
     'name'?: string;
     /**
+     * 员工姓名简拼
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'nameShortcut'?: string;
+    /**
+     * 员工姓名拼音
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'namePinYin'?: string;
+    /**
      * 当前行政部门
      * @type {string}
      * @memberof MainSheetRow
@@ -80,6 +473,18 @@ export interface MainSheetRow {
      * @memberof MainSheetRow
      */
     'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {Array<DepartmentHistoryRow>}
+     * @memberof MainSheetRow
+     */
+    'departmentHistory'?: Array<DepartmentHistoryRow>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof MainSheetRow
+     */
+    'AircraftExperiences'?: Array<string>;
     /**
      * 
      * @type {SpecificLevel}
@@ -184,28 +589,15 @@ export interface MainSheetRow {
     'Tc'?: number;
     /**
      * 
-     * @type {OverrideStatus}
+     * @type {LevelOverrideStatus}
      * @memberof MainSheetRow
      */
-    'overrideStatus'?: OverrideStatus;
+    'LevelOverrideStatus'?: LevelOverrideStatus;
 }
 
 
 /**
- * 在 MainSheetRow 中代表某个标准是否有Override，不单独使用
- * @export
- * @interface OverrideStatus
- */
-export interface OverrideStatus {
-    /**
-     * 在MainSheetRow中代表某个标准是否有Override
-     * @type {boolean}
-     * @memberof OverrideStatus
-     */
-    '#/components/schemas/SpecificLevel'?: boolean;
-}
-/**
- * 飞行员基本信息
+ * 飞行员的基本信息，包括员工号、姓名、当前行政部门和在三大队时的最后一个行政部门, 不单独使用，作为其他对象的基础
  * @export
  * @interface PilotInfo
  */
@@ -223,6 +615,18 @@ export interface PilotInfo {
      */
     'name'?: string;
     /**
+     * 员工姓名简拼
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'nameShortcut'?: string;
+    /**
+     * 员工姓名拼音
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'namePinYin'?: string;
+    /**
      * 当前行政部门
      * @type {string}
      * @memberof PilotInfo
@@ -234,9 +638,72 @@ export interface PilotInfo {
      * @memberof PilotInfo
      */
     'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {Array<DepartmentHistoryRow>}
+     * @memberof PilotInfo
+     */
+    'departmentHistory'?: Array<DepartmentHistoryRow>;
 }
 /**
- * 所有的飞行员等级
+ * 
+ * @export
+ * @interface SearchWithDateAndKeyword
+ */
+export interface SearchWithDateAndKeyword {
+    /**
+     * 开始日期时间戳
+     * @type {number}
+     * @memberof SearchWithDateAndKeyword
+     */
+    'startDate'?: number;
+    /**
+     * 结束日期时间戳
+     * @type {number}
+     * @memberof SearchWithDateAndKeyword
+     */
+    'endDate'?: number;
+    /**
+     * 关键词
+     * @type {string}
+     * @memberof SearchWithDateAndKeyword
+     */
+    'keyword'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SearchWithDatePeriod
+ */
+export interface SearchWithDatePeriod {
+    /**
+     * 开始日期时间戳
+     * @type {number}
+     * @memberof SearchWithDatePeriod
+     */
+    'startDate'?: number;
+    /**
+     * 结束日期时间戳
+     * @type {number}
+     * @memberof SearchWithDatePeriod
+     */
+    'endDate'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface SearchWithKeyword
+ */
+export interface SearchWithKeyword {
+    /**
+     * 关键词
+     * @type {string}
+     * @memberof SearchWithKeyword
+     */
+    'keyword'?: string;
+}
+/**
+ * 
  * @export
  * @enum {string}
  */
@@ -263,19 +730,6 @@ export const SpecificLevel = {
 export type SpecificLevel = typeof SpecificLevel[keyof typeof SpecificLevel];
 
 
-/**
- * 
- * @export
- * @interface TestPost200Response
- */
-export interface TestPost200Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof TestPost200Response
-     */
-    'message'?: string;
-}
 
 /**
  * DefaultApi - axios parameter creator
@@ -285,11 +739,81 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @summary 删除某人的机型经历
+         * @param {DeleteWithID} [deleteWithID] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testPost: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/test`;
+        aircraftExperiencesOverrideDelete: async (deleteWithID?: DeleteWithID, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/aircraftExperiencesOverride`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteWithID, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 查询机型机型经历
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        aircraftExperiencesOverrideGet: async (searchWithDateAndKeyword?: SearchWithDateAndKeyword, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/aircraftExperiencesOverride`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(searchWithDateAndKeyword, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 增加或修改某人的机型经历
+         * @param {AircraftExperiencesOverrideRowUpsert} [aircraftExperiencesOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        aircraftExperiencesOverridePost: async (aircraftExperiencesOverrideRowUpsert?: AircraftExperiencesOverrideRowUpsert, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/aircraftExperiencesOverride`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -303,9 +827,319 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(aircraftExperiencesOverrideRowUpsert, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 删除某次检查记录
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailDelete: async (deleteWithID?: DeleteWithID, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/checkRideDetail`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteWithID, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 查询检查记录
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailGet: async (searchWithDateAndKeyword?: SearchWithDateAndKeyword, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/checkRideDetail`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(searchWithDateAndKeyword, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 增加或修改某次检查记录
+         * @param {CheckRideDetailRowUpsert} [checkRideDetailRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailPost: async (checkRideDetailRowUpsert?: CheckRideDetailRowUpsert, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/checkRideDetail`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(checkRideDetailRowUpsert, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 删除飞行员升级日期的覆盖行
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverrideDelete: async (deleteWithID?: DeleteWithID, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/levelOverride`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteWithID, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 查询所有飞行员升级日期的覆盖行
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverrideGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/levelOverride`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 飞行员升级日期的覆盖行上传
+         * @param {LevelOverrideRowUpsert} [levelOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverridePost: async (levelOverrideRowUpsert?: LevelOverrideRowUpsert, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/levelOverride`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(levelOverrideRowUpsert, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 查询所有主表行
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainSheetGet: async (searchWithKeyword?: SearchWithKeyword, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mainSheet`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(searchWithKeyword, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 根据Keyword获取某个人信息
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pilotInfoGet: async (searchWithKeyword?: SearchWithKeyword, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/pilotInfo`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(searchWithKeyword, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary 上传并处理Excel文件
+         * @param {File} [file] 要上传的Excel文件
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadExcelPost: async (file?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/uploadExcel`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+    
+    
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -324,13 +1158,157 @@ export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary 删除某人的机型经历
+         * @param {DeleteWithID} [deleteWithID] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestPost200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.testPost(options);
+        async aircraftExperiencesOverrideDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.aircraftExperiencesOverrideDelete(deleteWithID, options);
             const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.testPost']?.[index]?.url;
+            const operationBasePath = operationServerMap['DefaultApi.aircraftExperiencesOverrideDelete']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 查询机型机型经历
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async aircraftExperiencesOverrideGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CheckRideDetailRow>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.aircraftExperiencesOverrideGet(searchWithDateAndKeyword, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.aircraftExperiencesOverrideGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 增加或修改某人的机型经历
+         * @param {AircraftExperiencesOverrideRowUpsert} [aircraftExperiencesOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert?: AircraftExperiencesOverrideRowUpsert, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.aircraftExperiencesOverridePost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 删除某次检查记录
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkRideDetailDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkRideDetailDelete(deleteWithID, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.checkRideDetailDelete']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 查询检查记录
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkRideDetailGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CheckRideDetailRow>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkRideDetailGet(searchWithDateAndKeyword, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.checkRideDetailGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 增加或修改某次检查记录
+         * @param {CheckRideDetailRowUpsert} [checkRideDetailRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async checkRideDetailPost(checkRideDetailRowUpsert?: CheckRideDetailRowUpsert, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.checkRideDetailPost(checkRideDetailRowUpsert, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.checkRideDetailPost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 删除飞行员升级日期的覆盖行
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async levelOverrideDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.levelOverrideDelete(deleteWithID, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.levelOverrideDelete']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 查询所有飞行员升级日期的覆盖行
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async levelOverrideGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LevelOverrideRow>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.levelOverrideGet(options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.levelOverrideGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 飞行员升级日期的覆盖行上传
+         * @param {LevelOverrideRowUpsert} [levelOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async levelOverridePost(levelOverrideRowUpsert?: LevelOverrideRowUpsert, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.levelOverridePost(levelOverrideRowUpsert, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.levelOverridePost']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 查询所有主表行
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mainSheetGet(searchWithKeyword?: SearchWithKeyword, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MainSheetRow>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mainSheetGet(searchWithKeyword, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.mainSheetGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 根据Keyword获取某个人信息
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async pilotInfoGet(searchWithKeyword?: SearchWithKeyword, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PilotInfo>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.pilotInfoGet(searchWithKeyword, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.pilotInfoGet']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary 上传并处理Excel文件
+         * @param {File} [file] 要上传的Excel文件
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async uploadExcelPost(file?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.uploadExcelPost(file, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['DefaultApi.uploadExcelPost']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
@@ -345,11 +1323,122 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @summary 删除某人的机型经历
+         * @param {DeleteWithID} [deleteWithID] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testPost(options?: any): AxiosPromise<TestPost200Response> {
-            return localVarFp.testPost(options).then((request) => request(axios, basePath));
+        aircraftExperiencesOverrideDelete(deleteWithID?: DeleteWithID, options?: any): AxiosPromise<void> {
+            return localVarFp.aircraftExperiencesOverrideDelete(deleteWithID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 查询机型机型经历
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        aircraftExperiencesOverrideGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: any): AxiosPromise<Array<CheckRideDetailRow>> {
+            return localVarFp.aircraftExperiencesOverrideGet(searchWithDateAndKeyword, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 增加或修改某人的机型经历
+         * @param {AircraftExperiencesOverrideRowUpsert} [aircraftExperiencesOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert?: AircraftExperiencesOverrideRowUpsert, options?: any): AxiosPromise<void> {
+            return localVarFp.aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 删除某次检查记录
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailDelete(deleteWithID?: DeleteWithID, options?: any): AxiosPromise<void> {
+            return localVarFp.checkRideDetailDelete(deleteWithID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 查询检查记录
+         * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: any): AxiosPromise<Array<CheckRideDetailRow>> {
+            return localVarFp.checkRideDetailGet(searchWithDateAndKeyword, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 增加或修改某次检查记录
+         * @param {CheckRideDetailRowUpsert} [checkRideDetailRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        checkRideDetailPost(checkRideDetailRowUpsert?: CheckRideDetailRowUpsert, options?: any): AxiosPromise<void> {
+            return localVarFp.checkRideDetailPost(checkRideDetailRowUpsert, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 删除飞行员升级日期的覆盖行
+         * @param {DeleteWithID} [deleteWithID] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverrideDelete(deleteWithID?: DeleteWithID, options?: any): AxiosPromise<void> {
+            return localVarFp.levelOverrideDelete(deleteWithID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 查询所有飞行员升级日期的覆盖行
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverrideGet(options?: any): AxiosPromise<Array<LevelOverrideRow>> {
+            return localVarFp.levelOverrideGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 飞行员升级日期的覆盖行上传
+         * @param {LevelOverrideRowUpsert} [levelOverrideRowUpsert] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        levelOverridePost(levelOverrideRowUpsert?: LevelOverrideRowUpsert, options?: any): AxiosPromise<void> {
+            return localVarFp.levelOverridePost(levelOverrideRowUpsert, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 查询所有主表行
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mainSheetGet(searchWithKeyword?: SearchWithKeyword, options?: any): AxiosPromise<Array<MainSheetRow>> {
+            return localVarFp.mainSheetGet(searchWithKeyword, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 根据Keyword获取某个人信息
+         * @param {SearchWithKeyword} [searchWithKeyword] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pilotInfoGet(searchWithKeyword?: SearchWithKeyword, options?: any): AxiosPromise<Array<PilotInfo>> {
+            return localVarFp.pilotInfoGet(searchWithKeyword, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary 上传并处理Excel文件
+         * @param {File} [file] 要上传的Excel文件
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadExcelPost(file?: File, options?: any): AxiosPromise<void> {
+            return localVarFp.uploadExcelPost(file, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -363,12 +1452,145 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 export class DefaultApi extends BaseAPI {
     /**
      * 
+     * @summary 删除某人的机型经历
+     * @param {DeleteWithID} [deleteWithID] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public testPost(options?: AxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).testPost(options).then((request) => request(this.axios, this.basePath));
+    public aircraftExperiencesOverrideDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).aircraftExperiencesOverrideDelete(deleteWithID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 查询机型机型经历
+     * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public aircraftExperiencesOverrideGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).aircraftExperiencesOverrideGet(searchWithDateAndKeyword, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 增加或修改某人的机型经历
+     * @param {AircraftExperiencesOverrideRowUpsert} [aircraftExperiencesOverrideRowUpsert] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert?: AircraftExperiencesOverrideRowUpsert, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).aircraftExperiencesOverridePost(aircraftExperiencesOverrideRowUpsert, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 删除某次检查记录
+     * @param {DeleteWithID} [deleteWithID] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public checkRideDetailDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).checkRideDetailDelete(deleteWithID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 查询检查记录
+     * @param {SearchWithDateAndKeyword} [searchWithDateAndKeyword] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public checkRideDetailGet(searchWithDateAndKeyword?: SearchWithDateAndKeyword, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).checkRideDetailGet(searchWithDateAndKeyword, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 增加或修改某次检查记录
+     * @param {CheckRideDetailRowUpsert} [checkRideDetailRowUpsert] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public checkRideDetailPost(checkRideDetailRowUpsert?: CheckRideDetailRowUpsert, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).checkRideDetailPost(checkRideDetailRowUpsert, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 删除飞行员升级日期的覆盖行
+     * @param {DeleteWithID} [deleteWithID] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public levelOverrideDelete(deleteWithID?: DeleteWithID, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).levelOverrideDelete(deleteWithID, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 查询所有飞行员升级日期的覆盖行
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public levelOverrideGet(options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).levelOverrideGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 飞行员升级日期的覆盖行上传
+     * @param {LevelOverrideRowUpsert} [levelOverrideRowUpsert] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public levelOverridePost(levelOverrideRowUpsert?: LevelOverrideRowUpsert, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).levelOverridePost(levelOverrideRowUpsert, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 查询所有主表行
+     * @param {SearchWithKeyword} [searchWithKeyword] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public mainSheetGet(searchWithKeyword?: SearchWithKeyword, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).mainSheetGet(searchWithKeyword, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 根据Keyword获取某个人信息
+     * @param {SearchWithKeyword} [searchWithKeyword] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public pilotInfoGet(searchWithKeyword?: SearchWithKeyword, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).pilotInfoGet(searchWithKeyword, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary 上传并处理Excel文件
+     * @param {File} [file] 要上传的Excel文件
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public uploadExcelPost(file?: File, options?: AxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).uploadExcelPost(file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

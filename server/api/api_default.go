@@ -14,7 +14,40 @@ import (
 )
 
 type DefaultAPI struct {
-	// Post /api-go/test
-	// 
-	TestPost gin.HandlerFunc
+	// Delete /api-go/aircraftExperiencesOverride
+	// 删除某人的机型经历
+	AircraftExperiencesOverrideDelete gin.HandlerFunc
+	// Get /api-go/aircraftExperiencesOverride
+	// 查询机型机型经历
+	AircraftExperiencesOverrideGet gin.HandlerFunc
+	// Post /api-go/aircraftExperiencesOverride
+	// 增加或修改某人的机型经历
+	AircraftExperiencesOverridePost gin.HandlerFunc
+	// Delete /api-go/checkRideDetail
+	// 删除某次检查记录
+	CheckRideDetailDelete gin.HandlerFunc
+	// Get /api-go/checkRideDetail
+	// 查询检查记录
+	CheckRideDetailGet gin.HandlerFunc
+	// Post /api-go/checkRideDetail
+	// 增加或修改某次检查记录
+	CheckRideDetailPost gin.HandlerFunc
+	// Delete /api-go/levelOverride
+	// 删除飞行员升级日期的覆盖行
+	LevelOverrideDelete gin.HandlerFunc
+	// Get /api-go/levelOverride
+	// 查询所有飞行员升级日期的覆盖行
+	LevelOverrideGet gin.HandlerFunc
+	// Post /api-go/levelOverride
+	// 飞行员升级日期的覆盖行上传
+	LevelOverridePost gin.HandlerFunc
+	// Get /api-go/mainSheet
+	// 查询所有主表行
+	MainSheetGet gin.HandlerFunc
+	// Get /api-go/pilotInfo
+	// 根据Keyword获取某个人信息
+	PilotInfoGet gin.HandlerFunc
+	// Post /api-go/uploadExcel
+	// 上传并处理Excel文件
+	UploadExcelPost gin.HandlerFunc
 }
