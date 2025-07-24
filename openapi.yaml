@@ -22,7 +22,9 @@ paths:
                     example: "Hello, World!"
 components:
   schemas:
+    #  ----------------- Enum 定义 -----------------
     SpecificLevel:
+      title: SpecificLevel 飞行员等级枚举
       type: string
       enum:
         - F1
@@ -41,106 +43,244 @@ components:
         - Tb
         - C
         - Tc
-      description: 所有的飞行员等级
 
-    DatabaseRow:
+    AircraftType:
+      title: AircraftType 机型枚举
+      type: string
+      enum:
+        - B737
+        - B777
+        - B787
+        - B747
+        - 728
+        - 772
+        - 77L
+        - 77S
+        - 73Q
+        - 747
+        - 777
+        - 744
+
+    CheckRideType:
+      title: CheckRideType 检查类型枚举
+      type: string
+      enum:
+        - F1 初始改装/转机型
+        - F2 航线检查
+        - F2 模拟机检查
+        - F2b 航线检查
+        - F3 模拟机检查
+        - F3b 航线检查
+        - F3b 模拟机检查
+        - F3b 航线检查
+        - F4 模拟机检查
+        - F4 航线检查
+        - F5 口试
+        - F5 模拟机评估
+        - F5 航线检查1
+        - F5 航线检查2
+        - F5 航线检查3
+        - F5 航线检查4
+        - F5 局方检查
+        - M 本场
+        - J 模拟机
+        - J 航线检查
+        - A1 航线检查
+        - A2 航线检查
+        - A2b 航线检查
+        - Ta 本场
+        - Ta 模拟机评估
+        - Ta 模拟机检查
+        - Tb 模拟机评估
+        - Tb 模拟机检查
+
+    CheckRideResult:
+      title: CheckRideResult 检查结果枚举
+      type: string
+      enum:
+        - Satisfactory
+        - Unsatisfactory
+        - Incomplete
+
+    # 对象定义
+    DepartmentHistoryRow:
+      title: DepartmentHistoryRow 行政部门历史
+      description: 飞行员在不同行政部门的历史记录，不单独使用
       type: object
       properties:
-        id:
+        department:
           type: string
+          description: 行政部门
+        startDate:
+          type: number
+          format: datetime
+          description: 开始日期时间戳
+
+    PilotInfo:
+      title: PilotInfo 飞行员基本信息
+      description: 飞行员的基本信息，包括员工号、姓名、当前行政部门和在三大队时的最后一个行政部门, 不单独使用，作为其他对象的基础
+      type: object
+      properties:
+        staffID:
+          type: string
+          pattern: "^[0-9]{10}$"
           description: 员工号
         name:
           type: string
           description: 员工姓名
+        nameShortcut:
+          type: string
+          description: 员工姓名简拼
+        namePinYin:
+          type: string
+          description: 员工姓名拼音
         currentDepartment:
           type: string
           description: 当前行政部门
         lastDepartment3dd:
           type: string
           description: 在三大队时的最后一个行政部门
-        highestLevel:
-          $ref: "#/components/schemas/SpecificLevel"
-          description: 最高飞行员等级
-        F1:
-          type: number
-          format: datetime
-          description: F1升级日期时间戳
-        F2:
-          type: number
-          format: datetime
-          description: F2升级日期时间戳
-        F2b:
-          type: number
-          format: datetime
-          description: F2b升级日期时间戳
-        F3:
-          type: number
-          format: datetime
-          description: F3升级日期时间戳
-        F3b:
-          type: number
-          format: datetime
-          description: F3b升级日期时间戳
-        F4:
-          type: number
-          format: datetime
-          description: F4升级日期时间戳
-        F5:
-          type: number
-          format: datetime
-          description: F5升级日期时间戳
-        M:
-          type: number
-          format: datetime
-          description: M升级日期时间戳
-        J:
-          type: number
-          format: datetime
-          description: J升级日期时间戳
-        A1:
-          type: number
-          format: datetime
-          description: A1升级日期时间戳
-        A2:
-          type: number
-          format: datetime
-          description: A2升级日期时间戳
-        A2b:
-          type: number
-          format: datetime
-          description: A2b升级日期时间戳
-        Ta:
-          type: number
-          format: datetime
-          description: Ta升级日期时间戳
-        Tb:
-          type: number
-          format: datetime
-          description: Tb升级日期时间戳
-        C:
-          type: number
-          format: datetime
-          description: C升级日期时间戳
-        Tc:
-          type: number
-          format: datetime
-          description: Tc升级日期时间戳
-        OverrideDict:
-          type: object
-          additionalProperties:
-            $ref: "#/components/schemas/SpecificLevel"
-          description: 覆盖的飞行员等级字典，key为员工号，value为覆盖的等级
+        departmentHistory:
+          type: array
+          items:
+            $ref: "#/components/schemas/DepartmentHistoryRow"
+
+    LevelOverrideStatus:
+      type: object
+      description: 在 MainSheetRow 中代表某个标准是否有Override，不单独使用
+      properties:
+        "#/components/schemas/SpecificLevel":
+          type: boolean # 值只能是 true 或 false
+          description: 在 MainSheetRow 中代表某个标准是否有Override
+
+    MainSheetRow:
+      title: MainSheetRow 前端总表数行
+      description: 总表数据中的行信息，由服务器发送给前端，包含飞行员的基本信息和所有Level获得时间
+      allOf:
+        - $ref: "#/components/schemas/PilotInfo"
+        - type: object
+        - properties:
+            previousAircraft:
+              type: array
+              # 由string组成的array
+              items:
+                type: string
+            highestLevel:
+              $ref: "#/components/schemas/SpecificLevel"
+              description: 最高飞行员等级，如果该人员有过降标准，则不考虑
+            F1:
+              type: number
+              format: datetime
+              description: F1升级日期时间戳
+            F2:
+              type: number
+              format: datetime
+              description: F2升级日期时间戳
+            F2b:
+              type: number
+              format: datetime
+              description: F2b升级日期时间戳
+            F3:
+              type: number
+              format: datetime
+              description: F3升级日期时间戳
+            F3b:
+              type: number
+              format: datetime
+              description: F3b升级日期时间戳
+            F4:
+              type: number
+              format: datetime
+              description: F4升级日期时间戳
+            F5:
+              type: number
+              format: datetime
+              description: F5升级日期时间戳
+            M:
+              type: number
+              format: datetime
+              description: M升级日期时间戳
+            J:
+              type: number
+              format: datetime
+              description: J升级日期时间戳
+            A1:
+              type: number
+              format: datetime
+              description: A1升级日期时间戳
+            A2:
+              type: number
+              format: datetime
+              description: A2升级日期时间戳
+            A2b:
+              type: number
+              format: datetime
+              description: A2b升级日期时间戳
+            Ta:
+              type: number
+              format: datetime
+              description: Ta升级日期时间戳
+            Tb:
+              type: number
+              format: datetime
+              description: Tb升级日期时间戳
+            C:
+              type: number
+              format: datetime
+              description: C升级日期时间戳
+            Tc:
+              type: number
+              format: datetime
+              description: Tc升级日期时间戳
+            LevelOverrideStatus:
+              $ref: "#/components/schemas/LevelOverrideStatus"
+              description: 哪些标准是Override的
 
     LevelOverrideRow:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 员工号-SpecificLevel
-        level:
-          $ref: "#/components/schemas/SpecificLevel"
-          description: 要覆盖的飞行员升级日期
-        levelDate:
-          type: number
-          format: datetime
-          description: 要覆盖的飞行员升级日期时间戳
+      title: LevelOverrideRow 飞行员升级日期的覆盖行
+      allOf:
+        - $ref: "#/components/schemas/PilotInfo"
+        - type: object
+        - properties:
+            id:
+              type: string
+              description: 员工号-SpecificLevel，作为唯一ID
+            level:
+              $ref: "#/components/schemas/SpecificLevel"
+              description: 要覆盖的飞行员升级日期
+            levelDate:
+              type: number
+              format: datetime
+              description: 要覆盖的飞行员升级日期时间戳
+
+    PreviousAircraftOverrideRow:
+      title: PreviousAircraftOverrideRow 曾飞机型覆盖行
+      allOf:
+        - $ref: "#/components/schemas/PilotInfo"
+        - type: object
+        - properties:
+            previousAircraft:
+              type: array
+              items:
+                $ref: "#/components/schemas/AircraftType"
+
+    CheckRideDetailRow:
+      title: CheckRideDetailRow 检查行
+      allOf:
+        - $ref: "#/components/schemas/PilotInfo"
+        - type: object
+        - properties:
+            checkRide:
+              type: string
+              $ref: "#/components/schemas/CheckRideType"
+            checkRideDate:
+              type: number
+              format: datetime
+              description: 检查日期时间戳
+            checkRideResult:
+              type: string
+              $ref: "#/components/schemas/CheckRideResult"
+              description: 检查结果
+            note:
+              type: string
+              description: 检查备注

@@ -24,17 +24,257 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
- * An example of test on server response.
+ * 用于覆盖飞行员升级日期的行
  * @export
- * @interface TestResponse
+ * @interface LevelOverrideRow
  */
-export interface TestResponse {
+export interface LevelOverrideRow {
+    /**
+     * 员工号-SpecificLevel
+     * @type {string}
+     * @memberof LevelOverrideRow
+     */
+    'id'?: string;
     /**
      * 
-     * @type {number}
-     * @memberof TestResponse
+     * @type {SpecificLevel}
+     * @memberof LevelOverrideRow
      */
-    'time'?: number;
+    'level'?: SpecificLevel;
+    /**
+     * 要覆盖的飞行员升级日期时间戳
+     * @type {number}
+     * @memberof LevelOverrideRow
+     */
+    'levelDate'?: number;
+}
+
+
+/**
+ * 总表数据中的行信息，由服务器发送给前端，包含飞行员的基本信息和所有Level获得时间
+ * @export
+ * @interface MainSheetRow
+ */
+export interface MainSheetRow {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'staffID'?: string;
+    /**
+     * 员工姓名
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'name'?: string;
+    /**
+     * 当前行政部门
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'currentDepartment'?: string;
+    /**
+     * 在三大队时的最后一个行政部门
+     * @type {string}
+     * @memberof MainSheetRow
+     */
+    'lastDepartment3dd'?: string;
+    /**
+     * 
+     * @type {SpecificLevel}
+     * @memberof MainSheetRow
+     */
+    'highestLevel'?: SpecificLevel;
+    /**
+     * F1升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F1'?: number;
+    /**
+     * F2升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F2'?: number;
+    /**
+     * F2b升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F2b'?: number;
+    /**
+     * F3升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F3'?: number;
+    /**
+     * F3b升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F3b'?: number;
+    /**
+     * F4升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F4'?: number;
+    /**
+     * F5升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'F5'?: number;
+    /**
+     * M升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'M'?: number;
+    /**
+     * J升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'J'?: number;
+    /**
+     * A1升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'A1'?: number;
+    /**
+     * A2升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'A2'?: number;
+    /**
+     * A2b升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'A2b'?: number;
+    /**
+     * Ta升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'Ta'?: number;
+    /**
+     * Tb升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'Tb'?: number;
+    /**
+     * C升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'C'?: number;
+    /**
+     * Tc升级日期时间戳
+     * @type {number}
+     * @memberof MainSheetRow
+     */
+    'Tc'?: number;
+    /**
+     * 
+     * @type {OverrideStatus}
+     * @memberof MainSheetRow
+     */
+    'overrideStatus'?: OverrideStatus;
+}
+
+
+/**
+ * 在 MainSheetRow 中代表某个标准是否有Override，不单独使用
+ * @export
+ * @interface OverrideStatus
+ */
+export interface OverrideStatus {
+    /**
+     * 在MainSheetRow中代表某个标准是否有Override
+     * @type {boolean}
+     * @memberof OverrideStatus
+     */
+    '#/components/schemas/SpecificLevel'?: boolean;
+}
+/**
+ * 飞行员基本信息
+ * @export
+ * @interface PilotInfo
+ */
+export interface PilotInfo {
+    /**
+     * 员工号
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'staffID'?: string;
+    /**
+     * 员工姓名
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'name'?: string;
+    /**
+     * 当前行政部门
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'currentDepartment'?: string;
+    /**
+     * 在三大队时的最后一个行政部门
+     * @type {string}
+     * @memberof PilotInfo
+     */
+    'lastDepartment3dd'?: string;
+}
+/**
+ * 所有的飞行员等级
+ * @export
+ * @enum {string}
+ */
+
+export const SpecificLevel = {
+    F1: 'F1',
+    F2: 'F2',
+    F2b: 'F2b',
+    F3: 'F3',
+    F3b: 'F3b',
+    F4: 'F4',
+    F5: 'F5',
+    M: 'M',
+    J: 'J',
+    A1: 'A1',
+    A2: 'A2',
+    A2b: 'A2b',
+    Ta: 'Ta',
+    Tb: 'Tb',
+    C: 'C',
+    Tc: 'Tc'
+} as const;
+
+export type SpecificLevel = typeof SpecificLevel[keyof typeof SpecificLevel];
+
+
+/**
+ * 
+ * @export
+ * @interface TestPost200Response
+ */
+export interface TestPost200Response {
+    /**
+     * 
+     * @type {string}
+     * @memberof TestPost200Response
+     */
+    'message'?: string;
 }
 
 /**
@@ -87,7 +327,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestResponse>> {
+        async testPost(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TestPost200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.testPost(options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['DefaultApi.testPost']?.[index]?.url;
@@ -108,7 +348,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testPost(options?: any): AxiosPromise<TestResponse> {
+        testPost(options?: any): AxiosPromise<TestPost200Response> {
             return localVarFp.testPost(options).then((request) => request(axios, basePath));
         },
     };
