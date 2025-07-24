@@ -224,34 +224,34 @@ components:
       title: CheckRideType 检查类型枚举
       type: string
       enum:
-        - F1 初始改装/转机型
-        - F2 航线检查
-        - F2 模拟机检查
-        - F2b 航线检查
-        - F3 模拟机检查
-        - F3b 航线检查
-        - F3b 模拟机检查
-        - F3b 航线检查
-        - F4 模拟机检查
-        - F4 航线检查
-        - F5 口试
-        - F5 模拟机评估
-        - F5 航线检查1
-        - F5 航线检查2
-        - F5 航线检查3
-        - F5 航线检查4
-        - F5 局方检查
-        - M 本场
-        - J 模拟机
-        - J 航线检查
-        - A1 航线检查
-        - A2 航线检查
-        - A2b 航线检查
-        - Ta 本场
-        - Ta 模拟机评估
-        - Ta 模拟机检查
-        - Tb 模拟机评估
-        - Tb 模拟机检查
+        - F1_Sim 初始改装/转机型
+        - F2_Flight 航线检查
+        - F2_Sim 模拟机检查
+        - F2b_Flight 航线检查
+        - F3_Sim 模拟机检查
+        - F3b_Flight 航线检查
+        - F3b_Sim 模拟机检查
+        - F3b_Flight 航线检查
+        - F4_Sim 模拟机检查
+        - F4_Flight 航线检查
+        - F5_Oral 口试
+        - F5_SimEval 模拟机评估
+        - F5_Flight1 航线检查1
+        - F5_Flight2 航线检查2
+        - F5_Flight3 航线检查3
+        - F5_Flight4 航线检查4
+        - F5_Sim 局方检查
+        - M_TrafficPattern 本场
+        - J_Sim 模拟机
+        - J_Flight 航线检查
+        - A1_Flight 航线检查
+        - A2_Flight 航线检查
+        - A2b_Flight 航线检查
+        - Ta_TrafficPattern 本场
+        - Ta_SimEval 模拟机评估
+        - Ta_Sim 模拟机检查
+        - Tb_SimEval 模拟机评估
+        - Tb_Sim 模拟机检查
 
     CheckRideResult:
       title: CheckRideResult 检查结果枚举
