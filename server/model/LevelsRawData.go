@@ -1,9 +1,13 @@
 package model
 
 import (
+	"GinServer/server/api"
+
+	"github.com/golang-module/carbon"
 	"gorm.io/gorm"
 )
 
+// 级别查询导出，无需导入数据库
 type LevelsRawData struct {
 	gorm.Model
 	// 序号
@@ -32,4 +36,21 @@ type LevelsRawData struct {
 	EffectiveDate string `mapstructure:"生效日期" json:"effective_date" gorm:"column:effective_date"`
 	// 有效日期
 	ExpiryDate string `mapstructure:"有效日期" json:"expiry_date" gorm:"column:expiry_date"`
+}
+
+func (v LevelsRawData) TimeStamp() float32 {
+	effectiveDate := carbon.Parse(v.EffectiveDate)
+	return float32(effectiveDate.Timestamp())
+}
+
+func (v LevelsRawData) RelevantLevel() api.SpecificLevel {
+	for _, level := range AllSpecificLevels {
+		if level == api.SpecificLevel(v.Level) {
+			return level
+		}
+	}
+	if v.Symbol == "T" {
+		return "Ta"
+	}
+	return api.SpecificLevel(v.Level)
 }

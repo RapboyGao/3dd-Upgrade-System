@@ -39,52 +39,52 @@ type MainData struct {
 	// 最高的飞行标准
 	HighestLevel api.SpecificLevel `gorm:"column:highest_level" json:"highestLevel,omitempty"`
 
-	// F1升级日期时间戳
+	// F1升级日期时间戳(由外围导入的值)
 	F1 float32 `gorm:"column:f1" json:"F1,omitempty"`
 
-	// F2升级日期时间戳
+	// F2升级日期时间戳(由外围导入的值)
 	F2 float32 `gorm:"column:f2" json:"F2,omitempty"`
 
-	// F2b升级日期时间戳
+	// F2b升级日期时间戳(由外围导入的值)
 	F2b float32 `gorm:"column:f2b" json:"F2b,omitempty"`
 
-	// F3升级日期时间戳
+	// F3升级日期时间戳(由外围导入的值)
 	F3 float32 `gorm:"column:f3" json:"F3,omitempty"`
 
-	// F3b升级日期时间戳
+	// F3b升级日期时间戳(由外围导入的值)
 	F3b float32 `gorm:"column:f3b" json:"F3b,omitempty"`
 
-	// F4升级日期时间戳
+	// F4升级日期时间戳(由外围导入的值)
 	F4 float32 `gorm:"column:f4" json:"F4,omitempty"`
 
-	// F5升级日期时间戳
+	// F5升级日期时间戳(由外围导入的值)
 	F5 float32 `gorm:"column:f5" json:"F5,omitempty"`
 
-	// M升级日期时间戳
+	// M升级日期时间戳(由外围导入的值)
 	M float32 `gorm:"column:m" json:"M,omitempty"`
 
-	// J升级日期时间戳
+	// J升级日期时间戳(由外围导入的值)
 	J float32 `gorm:"column:j" json:"J,omitempty"`
 
-	// A1升级日期时间戳
+	// A1升级日期时间戳(由外围导入的值)
 	A1 float32 `gorm:"column:a1" json:"A1,omitempty"`
 
-	// A2升级日期时间戳
+	// A2升级日期时间戳(由外围导入的值)
 	A2 float32 `gorm:"column:a2" json:"A2,omitempty"`
 
-	// A2b升级日期时间戳
+	// A2b升级日期时间戳(由外围导入的值)
 	A2b float32 `gorm:"column:a2b" json:"A2b,omitempty"`
 
-	// Ta升级日期时间戳
+	// Ta升级日期时间戳(由外围导入的值)
 	Ta float32 `gorm:"column:ta" json:"Ta,omitempty"`
 
-	// Tb升级日期时间戳
+	// Tb升级日期时间戳(由外围导入的值)
 	Tb float32 `gorm:"column:tb" json:"Tb,omitempty"`
 
-	// C升级日期时间戳
+	// C升级日期时间戳(由外围导入的值)
 	C float32 `gorm:"column:c" json:"C,omitempty"`
 
-	// Tc升级日期时间戳
+	// Tc升级日期时间戳(由外围导入的值)
 	Tc float32 `gorm:"column:tc" json:"Tc,omitempty"`
 }
 
