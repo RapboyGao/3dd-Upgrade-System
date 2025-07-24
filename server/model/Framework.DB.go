@@ -12,6 +12,6 @@ func Initialize() (*gorm.DB, error) {
 	os.MkdirAll(".build/temp", os.ModePerm)
 	db, err := gorm.Open(sqlite.Open(".build/temp/gorm.db"), &gorm.Config{})
 	// 迁移 schema
-	db.AutoMigrate(&LevelsRawData{})
+	db.AutoMigrate(&LevelsRawData{}, &MainData{})
 	return db, err
 }

@@ -7,7 +7,9 @@ import (
 	"gorm.io/gorm"
 )
 
-type MainRow struct {
+// 主数据表内容
+// 根据人员来的
+type MainData struct {
 	gorm.Model
 
 	// 员工号 主键
@@ -86,7 +88,7 @@ type MainRow struct {
 	Tc float32 `gorm:"column:tc" json:"Tc,omitempty"`
 }
 
-func (m MainRow) GetAircraftExperiences() ([]api.AircraftType, error) {
+func (m MainData) GetAircraftExperiences() ([]api.AircraftType, error) {
 	// 用jsoniter解析
 	var aircraftExperiences []api.AircraftType
 	err := jsoniter.Unmarshal([]byte(m.AircraftExperiences), &aircraftExperiences)
@@ -96,7 +98,7 @@ func (m MainRow) GetAircraftExperiences() ([]api.AircraftType, error) {
 	return aircraftExperiences, nil
 }
 
-func (m *MainRow) SetAircraftExperiences(aircraftExperiences []api.AircraftType) error {
+func (m *MainData) SetAircraftExperiences(aircraftExperiences []api.AircraftType) error {
 	// 用jsoniter序列化
 	bytes, err := jsoniter.Marshal(aircraftExperiences)
 	if err != nil {
