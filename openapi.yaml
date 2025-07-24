@@ -9,6 +9,12 @@ servers:
 paths:
   /mainSheet:
     get:
+      summary: 查询所有主表行
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchWithKeyword"
       responses:
         "200":
           description: OK
@@ -18,6 +24,28 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/MainSheetRow"
+
+  # 上传并处理Excel
+  /uploadExcel:
+    post:
+      summary: 上传并处理Excel文件
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 要上传的Excel文件
+      responses:
+        "200":
+          description: 上传成功
+        "400":
+          description: 上传失败
+        "500":
+          description: 处理失败
 
   # levelOverride 的 Upsert，删和查
   /levelOverride:
@@ -37,11 +65,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: 删除某行的对应id
+              $ref: "#/components/schemas/DeleteWithID"
       responses:
         "200":
           description: OK
@@ -57,21 +81,103 @@ paths:
                 items:
                   $ref: "#/components/schemas/LevelOverrideRow"
 
-  /upload-xlsx:
+  /checkRideDetail:
     post:
-      summary: 上传并识别.xls或.xlsx文件，将内容导入相应的数据库
+      summary: 增加或修改某次检查记录
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
+              $ref: "#/components/schemas/CheckRideDetailRowUpsert"
       responses:
         "200":
           description: OK
+
+    delete:
+      summary: 删除某次检查记录
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWithID"
+      responses:
+        "200":
+          description: OK
+
+    get:
+      summary: 查询检查记录
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchWithDateAndKeyword"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CheckRideDetailRow"
+
+  # Upsert、删、查 所有AircraftExperiencesOverride
+  /aircraftExperiencesOverride:
+    post:
+      summary: 增加或修改某人的机型经历
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AircraftExperiencesOverrideRowUpsert"
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: 删除某人的机型经历
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWithID"
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: 查询机型机型经历
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchWithDateAndKeyword"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CheckRideDetailRow"
+
+  # 根据Keyword获取某个人信息
+  /pilotInfo:
+    get:
+      summary: 根据Keyword获取某个人信息
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchWithKeyword"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PilotInfo"
 
 components:
   schemas:
@@ -214,7 +320,7 @@ components:
         - $ref: "#/components/schemas/PilotInfo"
         - type: object
         - properties:
-            previousAircraft:
+            AircraftExperiences:
               type: array
               # 由string组成的array
               items:
@@ -324,19 +430,19 @@ components:
               format: datetime
               description: 要覆盖的飞行员升级日期时间戳
 
-    PreviousAircraftOverrideRow:
-      title: PreviousAircraftOverrideRow 曾飞机型覆盖行
+    AircraftExperiencesOverrideRow:
+      title: AircraftExperiencesOverrideRow 曾飞机型覆盖行
       allOf:
         - $ref: "#/components/schemas/PilotInfo"
         - type: object
         - properties:
-            previousAircraft:
+            AircraftExperiences:
               type: array
               items:
                 $ref: "#/components/schemas/AircraftType"
 
-    PreviousAircraftOverrideRowUpsert:
-      title: PreviousAircraftOverrideRowUpsert 曾飞机型覆盖行上传格式
+    AircraftExperiencesOverrideRowUpsert:
+      title: AircraftExperiencesOverrideRowUpsert 曾飞机型覆盖行上传格式
       allOf:
         - type: object
         - properties:
@@ -344,7 +450,7 @@ components:
               type: string
               pattern: "^[0-9]{10}$"
               description: 员工号
-            previousAircraft:
+            AircraftExperiences:
               type: array
               items:
                 $ref: "#/components/schemas/AircraftType"
@@ -393,3 +499,48 @@ components:
             note:
               type: string
               description: 检查备注
+
+    DeleteWithID:
+      title: DeleteWithID 删除行
+      type: object
+      properties:
+        id:
+          type: string
+          description: 要删除的行的唯一id
+
+    SearchWithDatePeriod:
+      title: SearchWithDatePeriod 按日期范围查询
+      type: object
+      properties:
+        startDate:
+          type: number
+          format: datetime
+          description: 开始日期时间戳
+        endDate:
+          type: number
+          format: datetime
+          description: 结束日期时间戳
+
+    SearchWithKeyword:
+      title: SearchWithKeyword 按关键词查询
+      type: object
+      properties:
+        keyword:
+          type: string
+          description: 关键词
+
+    SearchWithDateAndKeyword:
+      title: SearchWithDateAndKeyword 按日期范围和关键词查询
+      type: object
+      properties:
+        startDate:
+          type: number
+          format: datetime
+          description: 开始日期时间戳
+        endDate:
+          type: number
+          format: datetime
+          description: 结束日期时间戳
+        keyword:
+          type: string
+          description: 关键词
