@@ -301,6 +301,7 @@ components:
           description: 在三大队时的最后一个行政部门
         departmentHistory:
           type: array
+          description: 行政部门历史
           items:
             $ref: "#/components/schemas/DepartmentHistoryRow"
 

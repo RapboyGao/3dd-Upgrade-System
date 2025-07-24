@@ -30,5 +30,6 @@ type PilotInfo struct {
 	// 在三大队时的最后一个行政部门
 	LastDepartment3dd string `json:"lastDepartment3dd,omitempty"`
 
+	// 行政部门历史
 	DepartmentHistory []DepartmentHistoryRow `json:"departmentHistory,omitempty"`
 }

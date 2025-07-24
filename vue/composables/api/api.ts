@@ -66,7 +66,7 @@ export interface AircraftExperiencesOverrideRow {
      */
     'lastDepartment3dd'?: string;
     /**
-     * 
+     * 行政部门历史
      * @type {Array<DepartmentHistoryRow>}
      * @memberof AircraftExperiencesOverrideRow
      */
@@ -164,7 +164,7 @@ export interface CheckRideDetailRow {
      */
     'lastDepartment3dd'?: string;
     /**
-     * 
+     * 行政部门历史
      * @type {Array<DepartmentHistoryRow>}
      * @memberof CheckRideDetailRow
      */
@@ -365,7 +365,7 @@ export interface LevelOverrideRow {
      */
     'lastDepartment3dd'?: string;
     /**
-     * 
+     * 行政部门历史
      * @type {Array<DepartmentHistoryRow>}
      * @memberof LevelOverrideRow
      */
@@ -474,7 +474,7 @@ export interface MainSheetRow {
      */
     'lastDepartment3dd'?: string;
     /**
-     * 
+     * 行政部门历史
      * @type {Array<DepartmentHistoryRow>}
      * @memberof MainSheetRow
      */
@@ -639,7 +639,7 @@ export interface PilotInfo {
      */
     'lastDepartment3dd'?: string;
     /**
-     * 
+     * 行政部门历史
      * @type {Array<DepartmentHistoryRow>}
      * @memberof PilotInfo
      */

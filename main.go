@@ -3,6 +3,8 @@ package main
 import (
 	// 引入前端配置相关的包，用于配置Gin模式和获取配置信息
 	"GinServer/server/frontend"
+	"GinServer/server/model"
+
 	// 引入路由相关的包，用于创建服务器路由
 	"GinServer/server/routes"
 	// 引入工具包，用于记录服务器日志等操作
@@ -18,6 +20,8 @@ func main() {
 	// 调用frontend包中的ConfigureGinMode函数，根据项目目录下是否存在node_modules目录来配置Gin框架的运行模式
 	// 如果存在node_modules目录，使用调试模式，输出详细日志；如果不存在，使用生产模式，禁用详细日志以提高性能
 	frontend.ConfigureGinMode()
+
+	model.Initialize()
 
 	// 调用frontend包中的GetConfig函数，获取前端配置信息，该配置信息包含Gin服务器端口、Nuxt应用端口和应用基础URL等
 	var sharedConfig = frontend.GetConfig
