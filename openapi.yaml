@@ -7,19 +7,72 @@ servers:
   - description: Development Server
     url: http://localhost:8099/api-go
 paths:
-  /test:
-    post:
+  /mainSheet:
+    get:
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Hello, World!"
+                type: array
+                items:
+                  $ref: "#/components/schemas/MainSheetRow"
+
+  # levelOverride 的 Upsert，删和查
+  /levelOverride:
+    post:
+      summary: 飞行员升级日期的覆盖行上传
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LevelOverrideRowUpsert"
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: 删除飞行员升级日期的覆盖行
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: 删除某行的对应id
+      responses:
+        "200":
+          description: OK
+    get:
+      summary: 查询所有飞行员升级日期的覆盖行
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LevelOverrideRow"
+
+  /upload-xlsx:
+    post:
+      summary: 上传并识别.xls或.xlsx文件，将内容导入相应的数据库
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+
 components:
   schemas:
     #  ----------------- Enum 定义 -----------------
@@ -254,6 +307,23 @@ components:
               format: datetime
               description: 要覆盖的飞行员升级日期时间戳
 
+    LevelOverrideRowUpsert:
+      title: LevelOverrideRowForUpload 飞行员升级日期的覆盖行上传格式
+      allOf:
+        - type: object
+        - properties:
+            staffID:
+              type: string
+              pattern: "^[0-9]{10}$"
+              description: 员工号
+            level:
+              $ref: "#/components/schemas/SpecificLevel"
+              description: 要覆盖的飞行员升级日期
+            levelDate:
+              type: number
+              format: datetime
+              description: 要覆盖的飞行员升级日期时间戳
+
     PreviousAircraftOverrideRow:
       title: PreviousAircraftOverrideRow 曾飞机型覆盖行
       allOf:
@@ -265,12 +335,50 @@ components:
               items:
                 $ref: "#/components/schemas/AircraftType"
 
+    PreviousAircraftOverrideRowUpsert:
+      title: PreviousAircraftOverrideRowUpsert 曾飞机型覆盖行上传格式
+      allOf:
+        - type: object
+        - properties:
+            staffID:
+              type: string
+              pattern: "^[0-9]{10}$"
+              description: 员工号
+            previousAircraft:
+              type: array
+              items:
+                $ref: "#/components/schemas/AircraftType"
+
     CheckRideDetailRow:
       title: CheckRideDetailRow 飞行/模拟机检查行
       allOf:
         - $ref: "#/components/schemas/PilotInfo"
         - type: object
         - properties:
+            checkRide:
+              type: string
+              $ref: "#/components/schemas/CheckRideType"
+            checkRideDate:
+              type: number
+              format: datetime
+              description: 检查日期时间戳
+            checkRideResult:
+              type: string
+              $ref: "#/components/schemas/CheckRideResult"
+              description: 检查结果
+            note:
+              type: string
+              description: 检查备注
+
+    CheckRideDetailRowUpsert:
+      title: CheckRideDetailRowUpsert 飞行/模拟机检查行上传格式
+      allOf:
+        - type: object
+        - properties:
+            staffID:
+              type: string
+              pattern: "^[0-9]{10}$"
+              description: 员工号
             checkRide:
               type: string
               $ref: "#/components/schemas/CheckRideType"
