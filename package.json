@@ -9,10 +9,9 @@
     "update:dep": "nuxt-gin update"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.21.3",
-    "@types/node": "^24.0.15",
-    "@vitejs/plugin-legacy": "^7.1.0",
-    "axios": "^1.10.0",
+    "@openapitools/openapi-generator-cli": "^2.21.4",
+    "@types/node": "^24.1.0",
+    "axios": "^1.11.0",
     "nuxt": "^4.0.1",
     "nuxt-gin-tools": "0.1.7",
     "prettier": "^3.6.2",
